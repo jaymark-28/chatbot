@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chatbot & Game Design</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #e0f7fa, #e0f5f8);
+        }
+        #chat-content {
+            height: 60vh;
+            overflow-y: auto;
+            padding-bottom: 60px;
+            scroll-behavior: smooth;
+        }
+        .chat-bubble {
+            max-width: 70%;
+            padding: 12px 18px;
+            margin: 8px;
+            border-radius: 18px;
+            font-size: 15px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        .chat-bubble-user {
+            background-color: #4caf50;
+            color: white;
+            margin-left: auto;
+        }
+        .chat-bubble-bot {
+            background-color: #ffffff;
+            color: #333;
+            border: 1px solid #ddd;
+        }
+        .chat-container {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+        .input-area {
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            background-color: #f8f8f8;
+            border-top: 1px solid #e0e0e0;
+            position: sticky;
+            bottom: 0;
+            z-index: 10;
+            box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.05);
+        }
+        input {
+            flex-grow: 1;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 25px;
+            margin-right: 10px;
+            outline: none;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            font-size: 14px;
+        }
+        input:focus {
+            border-color: #4caf50;
+            box-shadow: 0 0 5px rgba(76, 175, 80, 0.5);
+        }
+        button {
+            padding: 10px 20px;
+            background: linear-gradient(135deg, #4caf50, #45a049);
+            color: white;
+            border-radius: 25px;
+            border: none;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background 0.3s ease;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        button:hover {
+            background: linear-gradient(135deg, #45a049, #3e8e41);
+        }
+        .header {
+            background: linear-gradient(135deg, #4caf50, #3e8e41);
+            color: white;
+            text-align: center;
+            padding: 15px;
+            border-radius: 10px 10px 0 0;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <div class="flex justify-center items-center min-h-screen">
+        <div class="w-full max-w-md bg-white shadow-lg rounded-lg">
+            <div class="header">
+                <h1 class="text-xl font-semibold">Game Design Chatbot</h1>
+            </div>
+            <div class="chat-container">
+                <div id="chat-content" class="p-4 flex-1">
+                    {% if response %}
+                        <div class="chat-bubble chat-bubble-bot">
+                            {{ response }}
+                        </div>
+                    {% endif %}
+                </div>
+                <div class="input-area">
+                    <form method="POST" class="flex w-full">
+                        <input id="chat-input" name="user_input" type="text" placeholder="Ask something..." required />
+                        <button type="submit">Send</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
